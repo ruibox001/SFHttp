@@ -1,0 +1,64 @@
+{
+    "weatherinfo" : {
+        "temp" : "20",
+        "time" : "17:00",
+        "WD" : "西南风",
+        "qy" : "970",
+        "isRadar" : "1",
+        "cityid" : "101110101",
+        "city" : "西安",
+        "WS" : "1级",
+        "WSE" : "1",
+        "Radar" : "JC_RADAR_AZ9290_JB",
+        "njd" : "暂无实况",
+        "SD" : "14%",
+        "rain" : "0",
+        "weather" : [
+                     {
+            "temp" : "20",
+            "time" : "17:00",
+            "WD" : "西南风",
+            "qy" : "970",
+            "isRadar" : "1",
+            "cityid" : "101110101",
+            "city" : "西安",
+            "WS" : "1级",
+            "WSE" : "1",
+            "Radar" : "JC_RADAR_AZ9290_JB",
+            "njd" : "暂无实况",
+            "SD" : "14%",
+            "rain" : "0"
+                     },
+                     {
+                     "temp" : "20",
+                     "time" : "17:00",
+                     "WD" : "西南风",
+                     "qy" : "970",
+                     "isRadar" : "1",
+                     "cityid" : "101110101",
+                     "city" : "西安",
+                     "WS" : "1级",
+                     "WSE" : "1",
+                     "Radar" : "JC_RADAR_AZ9290_JB",
+                     "njd" : "暂无实况",
+                     "SD" : "14%",
+                     "rain" : "0"
+                     },
+                     {
+                     "temp" : "20",
+                     "time" : "17:00",
+                     "WD" : "西南风",
+                     "qy" : "970",
+                     "isRadar" : "1",
+                     "cityid" : "101110101",
+                     "city" : "西安",
+                     "WS" : "1级",
+                     "WSE" : "1",
+                     "Radar" : "JC_RADAR_AZ9290_JB",
+                     "njd" : "暂无实况",
+                     "SD" : "14%",
+                     "rain" : "0"
+                     }
+        ]
+    }
+}
