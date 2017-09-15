@@ -8,7 +8,7 @@ s.source      = { :git => 'https://github.com/ruibox001/SFHttp.git',:tag => "v#{
 s.license     = { :type => "MIT", :file => "LICENSE" }
 s.platform = :ios, '8.0'
 s.requires_arc = true
-s.source_files = 'SFHttp/*.{h,m}'
+s.source_files  = "SFHttp", "SFHttp/**/*.{h,m}"
 s.framework  = "UIKit"
 s.ios.deployment_target = '8.0'
 end
