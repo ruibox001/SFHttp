@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name        = 'SFHttp'
-s.version     = '1.0.2'
+s.version     = '2.0.0'
 s.authors     = { 'ruibox001' => 'wangshengyuancrazy@163.com' }
 s.homepage    = 'https://github.com/ruibox001/SFHttp'
 s.summary     = 'SFHttp 是基于AFNetworking的封装的网络请求类'
