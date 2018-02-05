@@ -18,8 +18,7 @@
         [httpManager processNetworkError];
         return nil;
     }
-    
-    return [self requestWithInfo:httpManager];
+    return [self requestWithHttpManager:httpManager];
 }
 
 + (AFHTTPSessionManager *)manager {
@@ -36,7 +35,7 @@
     return manager;
 }
 
-+ (NSURLSessionDataTask *)requestWithInfo:(id)httpManager {
++ (NSURLSessionDataTask *)requestWithHttpManager:(id)httpManager {
     if ([httpManager isKindOfClass:[SFHttpManager class]]) {
         SFHttpManager *m = httpManager;
         if (m.method == mPost) {
@@ -49,21 +48,31 @@
     return nil;
 }
 
-+ (NSURLSessionDataTask *)requestPost:(SFHttpManager *)info
++ (NSURLSessionDataTask *)requestPost:(SFHttpManager *)httpManager
 {
-    return [[self manager] POST:info.url parameters:info.parameter progress:info.progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [info processSuccWithTask:task data:responseObject];
+    AFHTTPSessionManager *manager = [self manager];
+    [manager.requestSerializer setTimeoutInterval:httpRequestTimeOut];
+    for (NSString *key in httpManager.headers.allKeys) {
+        [manager.requestSerializer setValue:[httpManager.headers objectForKey:key] forHTTPHeaderField:key];
+    }
+    return [manager POST:httpManager.url parameters:httpManager.parameter progress:httpManager.progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [httpManager processSuccWithTask:task data:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         [info processFailWithTask:task error:error];
+         [httpManager processFailWithTask:task error:error];
     }];
 }
 
-+ (NSURLSessionDataTask *)requestGet:(SFHttpManager *)info
++ (NSURLSessionDataTask *)requestGet:(SFHttpManager *)httpManager
 {
-    return [[self manager] GET:info.url parameters:info.parameter progress:info.progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [info processSuccWithTask:task data:responseObject];
+    AFHTTPSessionManager *manager = [self manager];
+    [manager.requestSerializer setTimeoutInterval:httpRequestTimeOut];
+    for (NSString *key in httpManager.headers.allKeys) {
+        [manager.requestSerializer setValue:[httpManager.headers objectForKey:key] forHTTPHeaderField:key];
+    }
+    return [manager GET:httpManager.url parameters:httpManager.parameter progress:httpManager.progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [httpManager processSuccWithTask:task data:responseObject];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [info processFailWithTask:task error:error];
+        [httpManager processFailWithTask:task error:error];
     }];
 }
 

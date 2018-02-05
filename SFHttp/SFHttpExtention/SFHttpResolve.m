@@ -24,7 +24,7 @@ SFHttpResolve *resolveUtil() {
 }
 
 - (id)resolveWithResolveInfo:(SFHttpResolveModel *)resolveModel data:(id)data {
-    if (!data) {
+    if (!data || !resolveModel) {
         return nil;
     }
     

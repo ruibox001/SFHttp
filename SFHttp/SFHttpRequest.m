@@ -43,6 +43,17 @@ SFHttp *request(RequestMethod method) {
     };
 }
 
+- (SFHttp *(^)(NSDictionary *))addHeaders {
+    return ^(NSDictionary *dict){
+        if (dict) {
+            for (NSString *key in dict.allKeys) {
+                [self.manager.headers setObject:dict[key] forKey:key];
+            }
+        }
+        return self;
+    };
+}
+
 - (SFHttp *(^)(void (^)(id json)))succ {
     return ^(void (^succBlock)(id json)){
         self.manager.succBlock = succBlock;
@@ -67,6 +78,14 @@ SFHttp *request(RequestMethod method) {
 
 - (NSURLSessionDataTask *(^)())start {
     return ^(){
+        return [SFHttpTask startRequest:self.manager];
+    };
+}
+
+- (NSURLSessionDataTask *(^)(NSString *key,NSString *className,void (^)(id model)))startWithResolve {
+    return ^(NSString *modelKey,NSString *modelName,void (^resolveBlock)(id model)){
+        self.manager.resolveInfo = resolveModelUtil.resolveBlock(modelKey,modelName,resolveBlock);
+        self.manager.delegate = resolveTool;
         return [SFHttpTask startRequest:self.manager];
     };
 }

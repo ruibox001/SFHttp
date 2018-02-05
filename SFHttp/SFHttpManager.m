@@ -20,6 +20,9 @@
     if (self.delegate) {
         if ([self.delegate respondsToSelector:@selector(resolveWithResolveInfo:data:)]) {
             id m = [self.delegate resolveWithResolveInfo:self.resolveInfo data:data];
+            if (!m) {
+                m = data;
+            }
             if (self.resolveInfo.resolvBlock) {
                 self.resolveInfo.resolvBlock(m);
             }
@@ -31,6 +34,10 @@
     requestLog(@"请求失败信息: url: \n%@ \nparameter: \n%@ \n错误数据: \n%@",self.url,self.parameter,error);
     if (self.failBlock) {
         self.failBlock(error);
+    }
+    
+    if (self.resolveInfo && self.resolveInfo.resolvBlock) {
+        self.resolveInfo.resolvBlock(error);
     }
 }
 
@@ -47,6 +54,18 @@
         _parameter = [NSMutableDictionary dictionary];
     }
     return _parameter;
+}
+
+- (NSMutableDictionary *)headers {
+    if (!_headers) {
+        _headers = [NSMutableDictionary dictionary];
+    }
+    return _headers;
+}
+
+- (void)dealloc
+{
+    requestLog(@"请求结束了：%@",self.url);
 }
 
 @end

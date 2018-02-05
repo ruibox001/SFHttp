@@ -19,4 +19,6 @@
 
 @end
 
+#define httpRequestTimeOut 15
+
 #endif /* SFHttpConst_h */

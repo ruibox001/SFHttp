@@ -19,10 +19,12 @@
 SFHttp *request(RequestMethod method);
 - (SFHttp *(^)(NSString *))url;
 - (SFHttp *(^)(NSDictionary *))addPara;
+- (SFHttp *(^)(NSDictionary *))addHeaders;
 - (SFHttp *(^)(void (^)(id json)))succ;
 - (SFHttp *(^)(NSString *key,NSString *className,void (^)(id model)))resolve;
 - (SFHttp *(^)(void (^)(NSError *error)))fail;
 - (NSURLSessionDataTask *(^)())start;
+- (NSURLSessionDataTask *(^)(NSString *key,NSString *className,void (^)(id model)))startWithResolve;
 - (SFHttp *(^)(NSURLSessionDataTask *))cancelTask;
 
 /* 使用例子 **

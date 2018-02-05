@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, RequestMethod){
 #pragma mark - 请求相关
 @property (nonatomic,strong) NSString *url;
 @property (nonatomic,strong) NSMutableDictionary *parameter;
+@property (nonatomic,strong) NSMutableDictionary *headers;
 @property (nonatomic,assign) RequestMethod method;
 @property (nonatomic,copy) void (^succBlock)(id json);
 @property (nonatomic,copy) void (^failBlock)(NSError *error);
@@ -36,6 +37,8 @@ typedef NS_ENUM(NSInteger, RequestMethod){
 #pragma mark - 处理相关
 - (void)processSuccWithTask:(NSURLSessionDataTask *)task data:(id)data;
 - (void)processFailWithTask:(NSURLSessionDataTask *)task error:(NSError *)error;
+
+#pragma mark - 网络相关
 - (void)processNetworkError;
 
 @end

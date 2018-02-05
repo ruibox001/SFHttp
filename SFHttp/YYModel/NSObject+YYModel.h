@@ -25,14 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
  
  Sample Code:
     
-     @ YYAuthor : NSObject
+     ********************** json convertor *********************
+     interfaces YYAuthor : NSObject
      @property (nonatomic, strong) NSString *name;
      @property (nonatomic, assign) NSDate *birthday;
      @end
      @implementation YYAuthor
      @end
  
-     @ YYBook : NSObject
+     interfaces YYBook : NSObject
      @property (nonatomic, copy) NSString *name;
      @property (nonatomic, assign) NSUInteger pages;
      @property (nonatomic, strong) YYAuthor *author;
@@ -50,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
      }
  
      ********************** Coding/Copying/hash/equal *********************
-     @ YYShadow :NSObject <NSCoding, NSCopying>
+     interfaces YYShadow :NSObject <NSCoding, NSCopying>
      @property (nonatomic, copy) NSString *name;
      @property (nonatomic, assign) CGSize size;
      @end
@@ -281,7 +282,7 @@ NS_ASSUME_NONNULL_BEGIN
         }
  
     model:
-        @ YYBook : NSObject
+        interfaces YYBook : NSObject
         @property NSString *name;
         @property NSInteger page;
         @property NSString *desc;
@@ -309,9 +310,9 @@ NS_ASSUME_NONNULL_BEGIN
  object will be add to the array/set/dictionary.
  
   Example:
-        @ YYShadow, YYBorder, YYAttachment;
+        class YYShadow, YYBorder, YYAttachment;
  
-        @ YYAttributes
+        interfaces YYAttributes
         @property NSString *name;
         @property NSArray *shadows;
         @property NSSet *borders;
@@ -339,7 +340,7 @@ NS_ASSUME_NONNULL_BEGIN
  (both singular and containers via `+modelContainerPropertyGenericClass`).
  
  Example:
-        @ YYCircle, YYRectangle, YYLine;
+        clas YYCircle, YYRectangle, YYLine;
  
         @implementation YYShape
 
