@@ -8,64 +8,85 @@
 3、自动解析传入的模型并返回<br>
 4、网络变化监听<br>
 
+</p>
+
+---
+
 二、请求代码示例<br>
 1、get请求调用：<br>
 
-get<br>
-.url(@"http://www.weather.com.cn/data/sk/101110101.html")<br>
-.resolve(@"weatherinfo",@"MyModel",^(id model){<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ([model isKindOfClass:[MyModel class]]) {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NSLog(@"\n解析返回：%@",model);<br>
-        }<br>
-        else if ([model isKindOfClass:[NSArray class]]){<br>
-            for (MyModel *p in model) {<br>
-                NSLog(@"\n数组解析返回：%@",p);<br>
-            }<br>
-        }<br>
-   })<br>
-   .start();<br>
+            get
+            .url(@"http://www.weather.com.cn/data/sk/101110101.html").addPara(@{@"userId":@"111"})
+            .addPara(@{@"userName":@"222"}).resolve(@"weatherinfo",@"MyModel",^(id model){
+                if ([model isKindOfClass:[MyModel class]]) {
+                    NSLog(@"\n解析返回：%@",model);
+                }
+                else if ([model isKindOfClass:[NSArray class]]){
+                    for (MyModel *p in model) {
+                        NSLog(@"\n数组解析返回：%@",p);
+                    }
+                }
+            }).start();           
 
 2、post请求调用：<br>
 
-post<br>
-.url(@"http://www.weather.com.cn/data/sk/101110101.html")<br>
-.addPara(@{@"userId":@"111"})<br>
-.addPara(@{@"userName":@"222"})<br>
-.resolve(@"weatherinfo",@"MyModel",^(id model){<br>
-        if ([model isKindOfClass:[MyModel class]]) {<br>
-            NSLog(@"\n解析返回：%@",model);<br>
-        }<br>
-        else if ([model isKindOfClass:[NSArray class]]){<br>
-            for (MyModel *p in model) {<br>
-                NSLog(@"\n数组解析返回：%@",p);<br>
-            }<br>
-        }<br>
-   })<br>
-   .start();<br>
+            post
+            .url(@"http://www.weather.com.cn/data/sk/101110101.html")
+            .addPara(@{@"userId":@"111"})
+            .addPara(@{@"userName":@"222"})
+            .resolve(@"weatherinfo",@"MyModel",^(id model){
+                if ([model isKindOfClass:[MyModel class]]) {
+                    NSLog(@"\n解析返回：%@",model);
+                }
+                else if ([model isKindOfClass:[NSArray class]]){
+                    for (MyModel *p in model) {
+                        NSLog(@"\n数组解析返回：%@",p);
+                    }
+                }
+            })
+            .start();
 
 三、请求返回信息<br>
-请求信息:<br>
-URL: http://www.weather.com.cn/data/sk/101110101.html <br>
-参数: {<br>
-    userId = 111;<br>
-    userName = 222;<br>
-} <br>
-JSON: {<br>
-  "weatherinfo" : {<br>
-    "temp" : "20",<br>
-    "time" : "17:00",<br>
-    "WD" : "西南风",<br>
-    "qy" : "970",<br>
-    "isRadar" : "1",<br>
-    "cityid" : "101110101",<br>
-    "city" : "西安",<br>
-    "WS" : "1级",<br>
-    "WSE" : "1",<br>
-    "Radar" : "JC_RADAR_AZ9290_JB",<br>
-    "njd" : "暂无实况",<br>
-    "SD" : "14%",<br>
-    "rain" : "0"<br>
-  }<br>
-}<br>
-2017-09-11 09:10:41.208595+0800 SFRequest[3842:1055264] <br>
-解析返回：17:00 - 西南风 - 西安 - 暂无实况 - 20
+              
+            请求信息:
+            URL: http://www.weather.com.cn/data/sk/101110101.html
+            参数: {
+                userId = 111;
+                userName = 222;
+            }
+            JSON: {
+                "weatherinfo" : {
+                    "temp" : "20",
+                    "time" : "17:00",
+                    "WD" : "西南风",
+                    "qy" : "970",
+                    "isRadar" : "1",
+                    "cityid" : "101110101",
+                    "city" : "西安",
+                    "WS" : "1级",
+                    "WSE" : "1",
+                    "Radar" : "JC_RADAR_AZ9290_JB",
+                    "njd" : "暂无实况",
+                    "SD" : "14%",
+                    "rain" : "0"
+                }
+            }
+            
+            
+解析返回：
+
+            17:00 - 西南风 - 西安 - 暂无实况 - 20
+
+# 安装
+
+###  CocoaPods
+
+        1. 在 `Podfile` 中添加 `pod 'SFHttp'` <br>
+        2. 执行 `pod install` 或 `pod update`
+
+### 手动安装
+
+        1. 下载`SFHttp`文件夹内的所有内容。
+        2. 将`SFHttp`内的源文件添加(拖放)到你的工程。
+        
+
